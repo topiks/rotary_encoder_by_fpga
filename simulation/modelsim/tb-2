@@ -1,0 +1,4 @@
+add wave A B satuan puluhan ratusan satuan_out puluhan_out ratusan_out
+force A 0 0, 1 10ns, 0 20ns -repeat 20ns
+force B 0 0, 1 5ns, 0 15ns -repeat 20ns
+run 20000ns

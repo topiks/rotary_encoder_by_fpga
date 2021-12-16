@@ -1,0 +1,41 @@
+# Reading pref.tcl
+# do simulasi_membaca_enc_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying D:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {D:/Kampus/Semester 5/Perencanaan Komponen Terprogram/final project/taufik/simulasi_membaca_enc/simulasi_membaca_enc.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 18:42:08 on Dec 13,2021
+# vcom -reportprogress 300 -93 -work work D:/Kampus/Semester 5/Perencanaan Komponen Terprogram/final project/taufik/simulasi_membaca_enc/simulasi_membaca_enc.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity simulasi_membaca_enc
+# -- Compiling architecture behavior of simulasi_membaca_enc
+# End time: 18:42:08 on Dec 13,2021, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.simulasi_membaca_enc
+# vsim work.simulasi_membaca_enc 
+# Start time: 18:42:16 on Dec 13,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.simulasi_membaca_enc(behavior)
+do ./testbech1
+do ./tb-2
+# End time: 18:43:33 on Dec 13,2021, Elapsed time: 0:01:17
+# Errors: 0, Warnings: 0

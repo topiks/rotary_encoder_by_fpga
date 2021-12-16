@@ -1,0 +1,139 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
+ENTITY P1 IS
+PORT ( A, B : IN STD_LOGIC ;
+satuan_out, puluhan_out, ratusan_out : OUT STD_LOGIC_VECTOR (6 
+DOWNTO 0)) ;
+END P1 ;
+ARCHITECTURE behavior OF P1 IS
+SIGNAL satuan: STD_LOGIC_VECTOR (3 DOWNTO 0):= "0000";
+SIGNAL puluhan: STD_LOGIC_VECTOR (3 DOWNTO 0):= "0000";
+SIGNAL ratusan: STD_LOGIC_VECTOR (3 DOWNTO 0):= "0000";
+SIGNAL clock: STD_LOGIC;
+SIGNAL arah : STD_LOGIC:='1';
+BEGIN
+PROCESS (A, B)
+VARIABLE startA: time;
+VARIABLE startB: time;
+BEGIN
+IF(A'EVENT and A = '1') THEN
+startA := now;
+clock <='1';
+END IF;
+IF(B'EVENT and B = '1') THEN
+startB:= now;
+END IF;
+IF (startA<startB) THEN
+arah <= '1';
+ELSIF (startA>startB) THEN
+arah <='0';
+END IF;
+IF(clock='1' and arah='1') THEN
+clock<='0';
+IF (ratusan = "1001") THEN
+IF (puluhan = "1001") THEN
+IF (satuan = "1001") THEN
+satuan <= "0000";
+puluhan <= "0000";
+ratusan <= "0000";
+ELSE
+satuan <= satuan + 1;
+END IF;
+ELSE
+IF (satuan = "1001") THEN
+satuan <= "0000";
+puluhan <= puluhan + 1;
+ELSE
+satuan <= satuan + 1;
+END IF;
+END IF;
+ELSE
+IF (puluhan = "1001") THEN
+IF (satuan = "1001") THEN
+satuan <= "0000";
+puluhan <= "0000";
+ratusan <= ratusan + 1;
+ELSE
+satuan <= satuan + 1;
+END IF;
+ELSE
+IF (satuan = "1001") THEN
+satuan <= "0000";
+puluhan <= puluhan + 1;
+ELSE
+satuan <= satuan + 1;
+END IF;
+END IF;
+END IF;
+ELSIF (clock='1' and arah = '0') THEN
+clock<='0';
+IF (ratusan = "0000") THEN
+IF (puluhan = "0000") THEN
+IF (satuan = "0000") THEN
+satuan <= "1001";
+puluhan <= "1001";
+ratusan <= "1001";
+ELSE
+satuan <= satuan - 1;
+END IF;
+ELSE
+IF (satuan = "0000") THEN
+satuan <= "1001";
+puluhan <= puluhan - 1;
+ELSE
+satuan <= satuan - 1;
+END IF;
+END IF;
+ELSE
+IF (puluhan = "0000") THEN
+IF (satuan = "0000") THEN
+satuan <= "1001";
+puluhan <= "1001";
+ratusan <= ratusan - 1;
+ELSE
+satuan <= satuan - 1;
+END IF;
+ELSE
+IF (satuan = "0000") THEN
+satuan <= "1001";
+puluhan <= puluhan - 1;
+ELSE
+satuan <= satuan - 1;
+END IF;
+END IF;
+END IF;
+END IF;
+END PROCESS;
+satuan_out <= "1000000" when satuan = "0000" else
+ "1111001" when satuan = "0001" else
+ "0100100" when satuan = "0010" else
+ "0110000" when satuan = "0011" else
+ "0011001" when satuan = "0100" else
+ "0010010" when satuan = "0101" else
+ "0000011" when satuan = "0110" else
+ "1111000" when satuan = "0111" else
+ "0000000" when satuan = "1000" else
+ "0011000" when satuan = "1001";
+puluhan_out <= "1000000" when puluhan = "0000" else
+ "1111001" when puluhan = "0001" else
+ "0100100" when puluhan = "0010" else
+ "0110000" when puluhan = "0011" else
+ "0011001" when puluhan = "0100" else
+ "0010010" when puluhan = "0101" else
+ "0000011" when puluhan = "0110" else
+ "1111000" when puluhan = "0111" else
+ "0000000" when puluhan = "1000" else
+ "0011000" when puluhan = "1001";
+ratusan_out <= "1000000" when ratusan = "0000" else
+ "1111001" when ratusan = "0001" else
+ "0100100" when ratusan = "0010" else
+ "0110000" when ratusan = "0011" else
+ "0011001" when ratusan = "0100" else
+ "0010010" when ratusan = "0101" else
+ "0000011" when ratusan = "0110" else
+ "1111000" when ratusan = "0111" else
+ "0000000" when ratusan = "1000" else
+ "0011000" when ratusan = "1001";
+END behavior ;
